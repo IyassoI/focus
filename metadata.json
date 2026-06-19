@@ -1,0 +1,6 @@
+{
+  "name": "Focus Group",
+  "description": "Professional corporate website for Focus Group, an industrial, commercial, and technological trading partner.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
