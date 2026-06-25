@@ -1,0 +1,2260 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.env.example
+.gitignore
+index.html
+metadata.json
+package.json
+public/abdo.jpg
+public/ay.jpeg
+public/dawarik_square.jpg
+public/eissa.jpg
+public/gummy.jpg
+public/mekka_gate.jpg
+public/my.jpeg
+public/ph.jpg
+README.md
+src/App.tsx
+src/components/About.tsx
+src/components/CompanyValues.tsx
+src/components/Contact.tsx
+src/components/Footer.tsx
+src/components/Hero.tsx
+src/components/HowItWorks.tsx
+src/components/MeetTeam.tsx
+src/components/Navbar.tsx
+src/components/Projects.tsx
+src/components/Services.tsx
+src/components/SuccessStories.tsx
+src/data.ts
+src/index.css
+src/main.tsx
+src/types.ts
+tsconfig.json
+vite.config.ts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".env.example">
+# GEMINI_API_KEY: Required for Gemini AI API calls.
+# AI Studio automatically injects this at runtime from user secrets.
+# Users configure this via the Secrets panel in the AI Studio UI.
+GEMINI_API_KEY="MY_GEMINI_API_KEY"
+
+# APP_URL: The URL where this applet is hosted.
+# AI Studio automatically injects this at runtime with the Cloud Run service URL.
+# Used for self-referential links, OAuth callbacks, and API endpoints.
+APP_URL="MY_APP_URL"
+</file>
+
+<file path=".gitignore">
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="metadata.json">
+{
+  "name": "Focus Group",
+  "description": "Professional corporate website for Focus Group, an industrial, commercial, and technological trading partner.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "lucide-react": "^0.546.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^6.2.3",
+    "express": "^4.21.2",
+    "dotenv": "^17.2.3",
+    "motion": "^12.23.24"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3",
+    "@types/express": "^4.17.21"
+  }
+}
+</file>
+
+<file path="README.md">
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
+
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/0ae7c9ab-b481-48df-a706-a9ed7fbf9d88
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
+</file>
+
+<file path="src/App.tsx">
+import React, { useEffect, useState } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Services from './components/Services';
+import HowItWorks from './components/HowItWorks';
+import Projects from './components/Projects';
+import SuccessStories from './components/SuccessStories';
+import MeetTeam from './components/MeetTeam';
+import CompanyValues from './components/CompanyValues';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+
+export default function App() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      const sections = [
+        'home',
+        'about',
+        'services',
+        'how-it-works',
+        'projects',
+        'success-stories',
+        'team',
+        'contact',
+      ];
+
+      const scrollPosition = window.scrollY + 160;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy);
+    // Initial call
+    handleScrollSpy();
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollSpy);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-gray-900 font-sans selection:bg-brand-steel-light selection:text-white antialiased">
+      {/* Dynamic Header / Top Bar */}
+      <Navbar activeSection={activeSection} />
+
+      {/* Hero section with heavy sky-scraper cover */}
+      <Hero />
+
+      {/* Industrial partner overview */}
+      <About />
+
+      {/* Grid of 8 services with bottom VISION and icons */}
+      <Services />
+
+      {/* Staggered process map (Process 01, Process 02, Process 03) */}
+      <HowItWorks />
+
+      {/* Toggled / tabbed historical and futuristic commercial lists */}
+      <Projects />
+
+      {/* 3 detailed case studies with high-contrast picture grids */}
+      <SuccessStories />
+
+      {/* Executive management profiles with specific verified assets */}
+      <MeetTeam />
+
+      {/* 6 Grid items and quote "CHANCES LOVE READY" */}
+      <CompanyValues />
+
+      {/* Global contacts and validated message dispatch form */}
+      <Contact />
+
+      {/* Footer credits and sitemaps */}
+      <Footer />
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/About.tsx">
+import React from 'react';
+import { BRAND } from '../data';
+import { Globe, MapPin, Milestone, Settings, Award } from 'lucide-react';
+
+export default function About() {
+  const cities = [
+    { name: "Cairo", country: "Egypt", type: "Hub" },
+    { name: "Damietta", country: "Egypt", type: "Port" },
+    { name: "Mansoura", country: "Egypt", type: "Branch" },
+    { name: "Guangzhou", country: "China", type: "Core Branch" },
+    { name: "Hong Kong", country: "Hong Kong", type: "Licensing" },
+    { name: "Riyadh", country: "Saudi Arabia", type: "Regional" },
+    { name: "Mecca", country: "Saudi Arabia", type: "Projects" },
+    { name: "Istanbul", country: "Turkey", type: "Partners" }
+  ];
+
+  const benefits = [
+    {
+      icon: Settings,
+      title: "Direct Sourcing & Custom Engineering",
+      description: "Direct ties with manufacturers combined with on-demand product engineering modifications."
+    },
+    {
+      icon: Milestone,
+      title: "Global Supply Corridors",
+      description: "Cross-continental bridges that connect production capitals to regional commercial markets seamlessly."
+    },
+    {
+      icon: Award,
+      title: "Unmatched Expertise",
+      description: "Over 24 years of experience studying complex specifications and selecting the perfect industrial fits."
+    }
+  ];
+
+  return (
+    <section id="about" className="relative py-24 bg-white text-gray-900 overflow-hidden">
+      {/* Background elegant diagonal styling */}
+      <div 
+        className="absolute top-0 right-0 w-[45%] h-full bg-slate-50 z-0" 
+        style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+      />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-brand-steel-light/10 z-[1]" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          {/* Left Text Column (7 cols) */}
+          <div className="lg:col-span-7">
+            {/* Tagline preheading */}
+            <div className="flex items-center space-x-2 text-brand-steel-medium font-mono text-xs uppercase tracking-widest mb-3">
+              <span className="w-8 h-[1px] bg-brand-steel-medium" />
+              <span>WHO WE ARE</span>
+            </div>
+
+            {/* Main Section Header */}
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-navy uppercase tracking-tight">
+              About <span className="text-brand-steel-medium">Focus</span>
+            </h2>
+            
+            {/* Paragraph Text */}
+            <p className="mt-6 text-gray-650 text-base sm:text-lg leading-relaxed font-sans">
+              Focus is your industrial, commercial, and technological partner. If your business involves specialized engineering supplies, Focus is your best source for products directly from manufacturers — not just sourcing, but also product development and custom modifications to perfectly match your target applications. 
+            </p>
+            
+            <p className="mt-4 text-gray-600 text-sm sm:text-base leading-relaxed">
+              We have the experience to study required products, select the right solutions for your projects, and offer an unmatched network of relationships and accumulated partnerships in a fast-moving world. Our service network spans global economic zones, serving you expertly from initial drafts to final delivery.
+            </p>
+
+            {/* Quick Value Pillars */}
+            <div className="mt-10 space-y-6">
+              {benefits.map((b, idx) => {
+                const Icon = b.icon;
+                return (
+                  <div key={idx} className="flex gap-4 items-start">
+                    <div className="flex-shrink-0 w-10 h-10 bg-brand-navy flex items-center justify-center text-white" style={{ clipPath: 'polygon(12% 0, 100% 0, 88% 100%, 0 100%)' }}>
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-display font-bold text-brand-navy tracking-wide uppercase">{b.title}</h4>
+                      <p className="text-xs text-gray-600 mt-1">{b.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Global Footprint Map list Column (5 cols) */}
+          <div className="lg:col-span-5 bg-brand-navy text-white p-8 sm:p-10 shadow-xl border-t-4 border-brand-steel-light relative" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 95%, 92% 100%, 0 100%)' }}>
+            {/* Subtle background diagonal shapes */}
+            <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-brand-steel-medium/10 pointer-events-none" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
+
+            <div className="flex items-center space-x-3 mb-6">
+              <Globe className="w-6 h-6 text-brand-steel-light animate-spin-slow" />
+              <h3 className="font-display font-bold text-lg tracking-wider uppercase text-white">
+                Global Footprint
+              </h3>
+            </div>
+            
+            <p className="text-xs text-gray-300 mb-8 font-mono tracking-wide leading-relaxed uppercase">
+              Connecting the Far East, the Gulf, & the Mediterranean
+            </p>
+
+            {/* Cities Node Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {cities.map((city, ind) => (
+                <div 
+                  key={ind} 
+                  className="bg-brand-navy-light/40 border border-gray-700/50 p-3 hover:border-brand-steel-light/75 transition-all group hover:bg-brand-navy-light/80"
+                  style={{ clipPath: 'polygon(0 0, 93% 0, 100% 25%, 100% 100%, 7% 100%, 0 75%)' }}
+                >
+                  <div className="flex items-center space-x-2">
+                    <MapPin className="w-3.5 h-3.5 text-brand-steel-light group-hover:scale-110 transition-transform duration-200" />
+                    <span className="font-display font-bold text-sm tracking-wide text-white group-hover:text-brand-steel-light transition-colors">{city.name}</span>
+                  </div>
+                  <div className="flex justify-between items-center mt-2.5">
+                    <span className="text-[10px] font-sans text-gray-400 font-medium">{city.country}</span>
+                    <span className="text-[9px] font-mono bg-brand-steel-medium/30 text-brand-steel-light px-1.5 py-0.5 rounded uppercase">{city.type}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom footnote */}
+            <div className="mt-8 pt-4 border-t border-gray-800 text-[11px] text-gray-400 font-mono flex justify-between items-center">
+              <span>Established Networks</span>
+              <span className="text-brand-steel-light font-bold">Cairo & Guangzhou Hubs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/CompanyValues.tsx">
+import React from 'react';
+import { VALUES, VALUES_QUOTE } from '../data';
+import { ShieldCheck, UserCheck, HeartHandshake, Lightbulb, Users, Compass, HelpCircle } from 'lucide-react';
+
+export default function CompanyValues() {
+  const valueIcons = [ShieldCheck, UserCheck, HeartHandshake, Lightbulb, Users, Compass];
+
+  return (
+    <section id="values" className="relative py-24 bg-slate-50 text-gray-900 overflow-hidden">
+      {/* Background diagonal panels */}
+      <div 
+        className="absolute bottom-0 left-0 w-[45%] h-full bg-white z-0" 
+        style={{ clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0% 100%)' }}
+      />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-navy/[0.03] z-[1]" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          {/* Left Column: Visual Grid of 6 Values (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="flex items-center space-x-2 text-brand-steel-medium font-mono text-xs uppercase tracking-widest mb-3">
+              <span className="w-8 h-[1px] bg-brand-steel-medium" />
+              <span>CORE PRINCIPLES</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-navy uppercase tracking-tight">
+              The Company Values
+            </h2>
+
+            <p className="mt-4 text-xs font-mono text-gray-500 uppercase tracking-widest">
+              Securing operations through foundational metrics
+            </p>
+
+            {/* Grid of Values */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+              {VALUES.map((val, idx) => {
+                const IconComponent = valueIcons[idx] || HelpCircle;
+                return (
+                  <div
+                    key={val}
+                    className="bg-white border border-slate-200 p-5 group hover:border-brand-steel-light hover:-translate-y-1 transition-all duration-350"
+                    style={{
+                      clipPath: 'polygon(0 0, 92% 0, 100% 15%, 100% 100%, 8% 100%, 0 85%)'
+                    }}
+                  >
+                    <div className="w-9 h-9 bg-brand-navy/5 text-brand-steel-medium group-hover:bg-brand-navy group-hover:text-white flex items-center justify-center transition-colors duration-200"
+                      style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 15% 100%)' }}
+                    >
+                      <IconComponent className="w-4.5 h-4.5" />
+                    </div>
+                    <span className="block mt-4 font-display font-black text-xs text-brand-navy uppercase tracking-wider">
+                      {val}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column: Quote of the year "CHANCES LOVE READY" (5 cols) */}
+          <div className="lg:col-span-5 bg-brand-navy text-white p-8 sm:p-12 shadow-xl border-l-[6px] border-brand-steel-light relative"
+            style={{
+              clipPath: 'polygon(0 0, 100% 0, 100% 95%, 90% 100%, 0 100%)'
+            }}
+          >
+            {/* Subtle overlay accent */}
+            <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-brand-steel-medium/5 pointer-events-none" style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }} />
+
+            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-brand-steel-light mb-6 block">
+              Motto & Preparedness
+            </span>
+
+            {/* Giant quote header */}
+            <span className="text-3xl font-display font-black tracking-widest text-white leading-normal uppercase">
+              "{VALUES_QUOTE.quote}"
+            </span>
+
+            <div className="h-[2px] w-12 bg-brand-steel-light my-6" />
+
+            <p className="text-sm font-sans text-gray-300 leading-relaxed font-light">
+              {VALUES_QUOTE.subtext}
+            </p>
+
+            <div className="mt-8 pt-4 border-t border-gray-800 text-[10px] font-mono text-gray-400 uppercase tracking-widest flex items-center justify-between">
+              <span>Operational Guideline</span>
+              <span>Focus readiness index</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/Contact.tsx">
+import React, { useState } from 'react';
+import { CONTACT_HEAD_OFFICE, CONTACT_CHINA_BRANCH } from '../data';
+import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, RefreshCw } from 'lucide-react';
+
+export default function Contact() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMess, setErrorMess] = useState('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value} = e.target;
+    setFormState(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formState.name || !formState.email || !formState.message) {
+      setErrorMess('Please provide your name, email, and a message.');
+      return;
+    }
+    setErrorMess('');
+    setIsSubmitting(true);
+
+    // Simulate reliable API post
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormState({ name: '', email: '', message: '' });
+    }, 1500);
+  };
+
+  return (
+    <section id="contact" className="relative py-24 bg-brand-navy border-b border-gray-800 text-white overflow-hidden">
+      {/* Background elegant diagonal styling */}
+      <div 
+        className="absolute top-0 right-0 w-[45%] h-full bg-slate-900/40 z-0" 
+        style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+      />
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-brand-steel-light/10 pointer-events-none" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        
+        {/* Header Block */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center space-x-2 text-brand-steel-light font-mono text-xs uppercase tracking-widest mb-3">
+            <span className="w-8 h-[1px] bg-brand-steel-light" />
+            <span>CONNECT WITH US</span>
+            <span className="w-8 h-[1px] bg-brand-steel-light" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-white uppercase tracking-tight">
+            Get In Touch
+          </h2>
+          <p className="mt-4 text-xs font-mono text-gray-400 uppercase tracking-widest">
+            Prompt answers for specialized engineering & commerce requests
+          </p>
+        </div>
+
+        {/* Side-by-Side: Info Cards vs Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-6xl mx-auto">
+          
+          {/* Left Column: Office Details Channels (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Egypt Card */}
+            <div 
+              className="bg-brand-navy-light/40 border border-gray-800 p-6 hover:border-brand-steel-light/60 transition-all duration-300 relative group"
+              style={{ clipPath: 'polygon(0 0, 100% 0, 100% 95%, 93% 100%, 0 100%)' }}
+            >
+              <div className="absolute top-0 right-0 w-12 h-12 bg-indigo-500/5 group-hover:bg-brand-steel-medium/20 transition-all duration-300" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
+              
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-1.5 h-6 bg-brand-steel-light" />
+                <h3 className="font-display font-black text-sm uppercase tracking-wider text-white">
+                  Head Office — Egypt
+                </h3>
+              </div>
+
+              {/* Channels list */}
+              <div className="space-y-4">
+                <a href={`tel:${CONTACT_HEAD_OFFICE.phone}`} className="flex items-start gap-3 hover:text-brand-steel-light transition-colors group/link">
+                  <Phone className="w-4 h-4 mt-0.5 text-brand-steel-light group-hover/link:scale-110 transition-transform" />
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase text-gray-500">Call Support</span>
+                    <span className="text-sm font-semibold tracking-wider">{CONTACT_HEAD_OFFICE.phone}</span>
+                  </div>
+                </a>
+                
+                <a href={`mailto:${CONTACT_HEAD_OFFICE.email}`} className="flex items-start gap-3 hover:text-brand-steel-light transition-colors group/link">
+                  <Mail className="w-4 h-4 mt-0.5 text-brand-steel-light group-hover/link:scale-110 transition-transform" />
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase text-gray-500">Email Inquiries</span>
+                    <span className="text-sm font-semibold lowercase tracking-wide">{CONTACT_HEAD_OFFICE.email}</span>
+                  </div>
+                </a>
+
+                {CONTACT_HEAD_OFFICE.website && (
+                  <a href={`https://${CONTACT_HEAD_OFFICE.website}`} target="_blank" rel="noreferrer" className="flex items-start gap-3 hover:text-brand-steel-light transition-colors group/link">
+                    <Globe className="w-4 h-4 mt-0.5 text-brand-steel-light group-hover/link:scale-110 transition-transform" />
+                    <div>
+                      <span className="block text-[10px] font-mono uppercase text-gray-500">Web Portal</span>
+                      <span className="text-sm font-semibold uppercase tracking-wider">{CONTACT_HEAD_OFFICE.website}</span>
+                    </div>
+                  </a>
+                )}
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 text-brand-steel-light" />
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase text-gray-500">Location Address</span>
+                    <span className="text-xs text-gray-300 leading-relaxed">{CONTACT_HEAD_OFFICE.address}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* China Card */}
+            <div 
+              className="bg-brand-navy-light/40 border border-gray-800 p-6 hover:border-brand-steel-light/60 transition-all duration-300 relative group"
+              style={{ clipPath: 'polygon(0 0, 100% 0, 100% 95%, 93% 100%, 0 100%)' }}
+            >
+              <div className="absolute top-0 right-0 w-12 h-12 bg-orange-500/5 group-hover:bg-brand-steel-medium/20 transition-all duration-300" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
+
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-1.5 h-6 bg-brand-steel-light" />
+                <h3 className="font-display font-black text-sm uppercase tracking-wider text-white">
+                  Core Branch — China
+                </h3>
+              </div>
+
+              {/* Channels list */}
+              <div className="space-y-4">
+                <a href={`tel:${CONTACT_CHINA_BRANCH.phone}`} className="flex items-start gap-3 hover:text-brand-steel-light transition-colors group/link">
+                  <Phone className="w-4 h-4 mt-0.5 text-brand-steel-light group-hover/link:scale-110 transition-transform" />
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase text-gray-500">Call Guangzhou Hub</span>
+                    <span className="text-sm font-semibold tracking-wider">{CONTACT_CHINA_BRANCH.phone}</span>
+                  </div>
+                </a>
+
+                <a href={`mailto:${CONTACT_CHINA_BRANCH.email}`} className="flex items-start gap-3 hover:text-brand-steel-light transition-colors group/link">
+                  <Mail className="w-4 h-4 mt-0.5 text-brand-steel-light group-hover/link:scale-110 transition-transform" />
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase text-gray-500">Export Desk</span>
+                    <span className="text-sm font-semibold lowercase tracking-wide">{CONTACT_CHINA_BRANCH.email}</span>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 text-brand-steel-light" />
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase text-gray-500">Regional Address</span>
+                    <span className="text-xs text-gray-300 leading-relaxed">{CONTACT_CHINA_BRANCH.address}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Interaction Form Panel (7 cols) */}
+          <div className="lg:col-span-7 bg-brand-navy-light/20 border border-gray-800 p-8 sm:p-10 relative"
+            style={{ clipPath: 'polygon(0 0, 97% 0, 100% 5%, 100% 100%, 0 100%)' }}
+          >
+            <div className="flex items-center space-x-2.5 mb-6">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand-steel-light">
+                SECURE CORRESPONDENCE
+              </span>
+            </div>
+
+            {isSubmitted ? (
+              <div className="py-12 text-center flex flex-col items-center">
+                <CheckCircle2 className="w-16 h-16 text-emerald-400 mb-6 animate-pulse" />
+                <h4 className="font-display font-black text-lg text-white uppercase tracking-wider mb-2">
+                  Transmission Successful
+                </h4>
+                <p className="text-xs text-gray-300 max-w-sm mx-auto leading-relaxed mb-8">
+                  Thank you for contacting Focus Group. Your parameters have been received, and our logistics and engineering consulting desk will respond within 24 hours.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  className="px-6 py-2.5 bg-brand-steel-medium hover:bg-brand-steel-light text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-1.5"
+                  style={{ clipPath: 'polygon(5% 0, 100% 0, 95% 100%, 0 100%)' }}
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  Submit New Form
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                
+                {/* Form Warning state */}
+                {errorMess && (
+                  <div className="p-4 bg-rose-500/10 border-l-4 border-rose-500 text-xs text-rose-300 font-mono">
+                    {errorMess}
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Name field */}
+                  <div>
+                    <label htmlFor="name-input" className="block text-[10px] font-mono uppercase text-gray-400 mb-1.5 tracking-wider">
+                      Your Name
+                    </label>
+                    <input
+                      id="name-input"
+                      type="text"
+                      name="name"
+                      required
+                      value={formState.name}
+                      onChange={handleInputChange}
+                      className="w-full bg-brand-navy p-3 text-xs border border-gray-800 focus:outline-none focus:border-brand-steel-light text-white transition-colors"
+                      placeholder="e.g. John Doe"
+                    />
+                  </div>
+
+                  {/* Email field */}
+                  <div>
+                    <label htmlFor="email-input" className="block text-[10px] font-mono uppercase text-gray-400 mb-1.5 tracking-wider">
+                      Email Address
+                    </label>
+                    <input
+                      id="email-input"
+                      type="email"
+                      name="email"
+                      required
+                      value={formState.email}
+                      onChange={handleInputChange}
+                      className="w-full bg-brand-navy p-3 text-xs border border-gray-800 focus:outline-none focus:border-brand-steel-light text-white transition-colors"
+                      placeholder="e.g. john@company.com"
+                    />
+                  </div>
+                </div>
+
+                {/* Message field */}
+                <div>
+                  <label htmlFor="message-input" className="block text-[10px] font-mono uppercase text-gray-400 mb-1.5 tracking-wider">
+                    Detailed Scope or Message
+                  </label>
+                  <textarea
+                    id="message-input"
+                    name="message"
+                    rows={5}
+                    required
+                    value={formState.message}
+                    onChange={handleInputChange}
+                    className="w-full bg-brand-navy p-3 text-xs border border-gray-800 focus:outline-none focus:border-brand-steel-light text-white transition-colors resize-none"
+                    placeholder="Enter project specifications, sourcing details or desired modifications..."
+                  />
+                </div>
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-brand-steel-medium hover:bg-brand-steel-light transition-colors text-white font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 disabled:bg-gray-700/60 disabled:cursor-not-allowed"
+                  style={{ clipPath: 'polygon(2% 0, 100% 0, 98% 100%, 0 100%)' }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      <span>Transmitting Files...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/Footer.tsx">
+import React from 'react';
+import { Globe, ArrowUp } from 'lucide-react';
+
+export default function Footer() {
+  const scrollUp = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-brand-navy border-t border-gray-800 text-slate-300 py-16 relative overflow-hidden">
+      {/* Background visual flair */}
+      <div className="absolute top-0 right-0 w-48 h-[2px] bg-gradient-to-r from-transparent via-brand-steel-light/30 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 text-left items-start pb-12 border-b border-gray-800">
+          
+          {/* Logo & Tagline col (5 cols) */}
+          <div className="md:col-span-5 space-y-6">
+            <div className="flex items-center space-x-3">
+              <div className="w-9 h-9 flex items-center justify-center bg-brand-steel-medium/10 rounded-full border border-brand-steel-light/30">
+                <Globe className="w-5 h-5 text-brand-steel-light" />
+              </div>
+              <span className="font-display text-xl tracking-[0.2em] font-black text-white">
+                FOCUS
+              </span>
+            </div>
+
+            <p className="text-sm font-display font-medium text-brand-steel-light uppercase tracking-wide">
+              "STAY FOCUSED — Get it DONE"
+            </p>
+
+            <p className="text-xs text-gray-400 font-sans leading-relaxed max-w-sm">
+              Your comprehensive industrial, commercial, and technological partner. Powering trade connections & engineering trust bridges across the globe.
+            </p>
+          </div>
+
+          {/* Quick links col (3 cols) */}
+          <div className="md:col-span-3 space-y-4">
+            <h4 className="font-display font-bold text-xs uppercase tracking-wider text-white">
+              Sitemap Links
+            </h4>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <a href="#home" className="hover:text-brand-steel-light transition-colors">Home</a>
+              <a href="#about" className="hover:text-brand-steel-light transition-colors">About</a>
+              <a href="#services" className="hover:text-brand-steel-light transition-colors">Services</a>
+              <a href="#how-it-works" className="hover:text-brand-steel-light transition-colors">Process</a>
+              <a href="#projects" className="hover:text-brand-steel-light transition-colors">Projects</a>
+              <a href="#success-stories" className="hover:text-brand-steel-light transition-colors">Stories</a>
+              <a href="#team" className="hover:text-brand-steel-light transition-colors">Team</a>
+              <a href="#contact" className="hover:text-brand-steel-light transition-colors">Contact</a>
+            </div>
+          </div>
+
+          {/* Global network highlights col (4 cols) */}
+          <div className="md:col-span-4 space-y-4 text-xs">
+            <h4 className="font-display font-bold text-xs uppercase tracking-wider text-white">
+              Global Connection Hubs
+            </h4>
+            <div className="space-y-2 text-gray-400">
+              <p><strong className="text-white">Cairo Hub:</strong> El Akhbar St., No. 1258 Square, Cairo, Egypt</p>
+              <p><strong className="text-white">Guangzhou Hub:</strong> No. 399 Huanshi E Road, Crowne Plaza Room 906, China</p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Lower row details */}
+        <div className="mt-12 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
+          <p className="font-mono uppercase tracking-wider">
+            Copyright © 2025 Focus Group. All rights reserved.
+          </p>
+          
+          {/* Scroll up anchor button */}
+          <button
+            onClick={scrollUp}
+            className="mt-6 sm:mt-0 p-3 bg-brand-navy-light/60 border border-gray-800 hover:border-brand-steel-light hover:text-white transition-all flex items-center gap-1 text-[11px] font-mono uppercase tracking-widest"
+            style={{ clipPath: 'polygon(15% 0, 100% 0, 85% 100%, 0 100%)' }}
+          >
+            <span>Scroll To Top</span>
+            <ArrowUp className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+    </footer>
+  );
+}
+</file>
+
+<file path="src/components/Hero.tsx">
+import React from 'react';
+import { motion } from 'motion/react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+
+export default function Hero() {
+  return (
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy">
+      {/* Background Skyscraper Photo - Left aligned primarily, right half gets the overlay */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1800&auto=format&fit=crop')`,
+        }}
+      >
+        {/* Soft Left Side Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/60 via-brand-navy/30 to-transparent" />
+      </div>
+
+      {/* Right Half Dark Navy Geometric Overlay with Diagonal Slice */}
+      <div 
+        className="absolute inset-y-0 right-0 w-full lg:w-[60%] z-10 bg-brand-navy/85 lg:bg-brand-navy/90 backdrop-blur-sm lg:backdrop-blur-0"
+        style={{
+          clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)'
+        }}
+      />
+      
+      {/* Fallback overlay for mobile where clip-path might look too dramatic */}
+      <div className="absolute inset-0 bg-brand-navy/70 z-[5] lg:hidden" />
+
+      {/* Sharp-cut decorative triangles & chevrons (Geometric diagonal shapes) */}
+      <div className="absolute top-0 right-1/4 w-32 h-screen z-[11] hidden lg:block pointer-events-none">
+        <div 
+          className="absolute top-1/4 left-0 w-32 h-32 bg-brand-steel-light/10"
+          style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }}
+        />
+        <div 
+          className="absolute bottom-1/4 right-0 w-24 h-48 bg-brand-steel-medium/10"
+          style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }}
+        />
+      </div>
+
+      {/* Hero content */}
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20 pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[80vh]">
+          {/* Spacer for background view on large screens */}
+          <div className="hidden lg:block lg:col-span-5" />
+
+          {/* Right side aligned text content */}
+          <div className="lg:col-span-7 text-left lg:pl-12 flex flex-col justify-center">
+            {/* Tagline Pre-header with arrow chevron detail */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center space-x-2 text-brand-steel-light font-mono text-xs uppercase tracking-[0.25em] mb-4 bg-brand-steel-medium/10 py-1.5 px-3.5 border-l-2 border-brand-steel-light"
+              style={{ clipPath: 'polygon(0 0, 95% 0, 100% 100%, 0 100%)' }}
+            >
+              <span className="w-1.5 h-1.5 bg-brand-steel-light inline-block rounded-full animate-ping mr-1" />
+              Focus Industrial & Trading
+            </motion.div>
+
+            {/* Giant Title: STAY FOCUSED */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-5xl sm:text-6xl md:text-7xl font-display font-black text-white leading-tight uppercase tracking-tight"
+            >
+              STAY <br className="hidden sm:inline" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-steel-light to-brand-steel-medium">
+                FOCUSED
+              </span>
+            </motion.h1>
+
+            {/* Subtitle / Tagline: Get it DONE */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-2 flex items-center space-x-4"
+            >
+              <div className="h-1.5 w-16 bg-brand-steel-light" />
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-brand-steel-light tracking-wide uppercase">
+                Get it DONE
+              </h2>
+            </motion.div>
+
+            {/* Introductory statement */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-6 text-gray-300 text-sm sm:text-base leading-relaxed max-w-xl font-sans"
+            >
+              Bridging global manufacturing, custom product engineering, and door-to-door full-integration supply chains. Serving world-class projects from the Far East to the Mediterranean Mediterranean.
+            </motion.p>
+
+            {/* CTA action buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-10 flex flex-wrap gap-4 items-center"
+            >
+              {/* Primary Anchor CTA - sharp chevron cut path */}
+              <a
+                href="#contact"
+                className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden text-xs font-mono font-bold uppercase tracking-wider text-white bg-brand-steel-medium hover:bg-brand-steel-light transition-all duration-300 shadow-lg shadow-brand-navy/55"
+                style={{ clipPath: 'polygon(6% 0, 100% 0, 94% 100%, 0 100%)' }}
+              >
+                <span>Get in Touch</span>
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
+              </a>
+
+              {/* Secondary Anchor CTA */}
+              <a
+                href="#services"
+                className="inline-flex items-center space-x-2 text-xs font-mono text-gray-300 hover:text-white uppercase tracking-wider transition-colors py-3 px-4 border border-gray-600/30 hover:border-brand-steel-light/60 bg-white/5"
+                style={{ clipPath: 'polygon(0 0, 94% 0, 100% 100%, 6% 100%)' }}
+              >
+                <span>Explore Services</span>
+              </a>
+            </motion.div>
+
+            {/* Global cities highlights */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="mt-12 pt-8 border-t border-gray-700/40 grid grid-cols-2 sm:grid-cols-4 gap-4"
+            >
+              <div>
+                <span className="block text-xs font-mono text-brand-steel-light">Middle East</span>
+                <span className="block text-sm font-sans font-medium text-white">Cairo · Riyadh · Mecca</span>
+              </div>
+              <div>
+                <span className="block text-xs font-mono text-brand-steel-light">Asia</span>
+                <span className="block text-sm font-sans font-medium text-white">Guangzhou · HK</span>
+              </div>
+              <div>
+                <span className="block text-xs font-mono text-brand-steel-light">Mediterranean</span>
+                <span className="block text-sm font-sans font-medium text-white">Istanbul · Damietta</span>
+              </div>
+              <div>
+                <span className="block text-xs font-mono text-brand-steel-light">Partnerships</span>
+                <span className="block text-sm font-sans font-medium text-white">24+ Years Experience</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom absolute Chevron scroller */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <a href="#about" className="text-gray-400 hover:text-brand-steel-light transition-colors">
+          <ChevronDown className="w-6 h-6" />
+        </a>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/HowItWorks.tsx">
+import React from 'react';
+import { PROCESS_STEPS } from '../data';
+import { motion } from 'motion/react';
+import { Layers, Lightbulb, TrendingUp } from 'lucide-react';
+
+export default function HowItWorks() {
+  const icons = [Layers, Lightbulb, TrendingUp];
+
+  return (
+    <section id="how-it-works" className="relative py-24 bg-white text-gray-900 overflow-hidden">
+      {/* Background diagonal accents */}
+      <div className="absolute top-0 right-0 w-[30%] h-full bg-slate-50" style={{ clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0% 100%)' }} />
+      <div className="absolute top-1/2 left-0 w-24 h-48 bg-brand-navy/5" style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        
+        {/* Header Block */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <div className="flex items-center space-x-2 text-brand-steel-medium font-mono text-xs uppercase tracking-widest mb-3 justify-center">
+            <span className="w-8 h-[1px] bg-brand-steel-medium" />
+            <span>OPERATIONAL PIPELINE</span>
+            <span className="w-8 h-[1px] bg-brand-steel-medium" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-navy uppercase tracking-tight">
+            How It Works
+          </h2>
+          <p className="mt-4 text-xs font-mono text-gray-500 uppercase tracking-widest">
+            A meticulous, three-stage racing workflow to power your decisions
+          </p>
+        </div>
+
+        {/* Process Timeline Block */}
+        <div className="relative mt-12">
+          {/* Middle Connecting Line (Desktop) */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-steel-medium/20 via-brand-steel-light/40 to-brand-steel-medium/20 -translate-x-1/2 hidden lg:block" />
+
+          {/* Staggered Alternating Steps */}
+          <div className="space-y-12 lg:space-y-16">
+            {PROCESS_STEPS.map((proc, index) => {
+              const StepIcon = icons[index];
+              const isEven = index % 2 === 1;
+
+              return (
+                <div 
+                  key={proc.step} 
+                  className={`flex flex-col lg:flex-row items-center ${isEven ? 'lg:flex-row-reverse' : ''}`}
+                >
+                  {/* Left or Right Content Box (Depends on alignment) */}
+                  <div className="w-full lg:w-1/2 flex justify-center lg:justify-end lg:px-8">
+                    <div 
+                      className={`w-full max-w-lg bg-brand-navy text-white p-8 sm:p-10 shadow-xl border-t-2 border-brand-steel-light relative group hover:border-white transition-all duration-300 ${isEven ? 'lg:text-left' : 'lg:text-right'}`}
+                      style={{
+                        clipPath: isEven 
+                          ? 'polygon(3% 0%, 100% 0%, 100% 100%, 0% 100%)' 
+                          : 'polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)'
+                      }}
+                    >
+                      {/* Accent corner triangle */}
+                      <div className="absolute top-0 right-0 w-16 h-16 bg-brand-steel-medium/10 group-hover:bg-brand-steel-medium/20 transition-all" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
+
+                      {/* Step Indicator Label */}
+                      <div className={`flex items-center gap-3 mb-4 ${isEven ? 'justify-start' : 'justify-start lg:justify-end'}`}>
+                        <span className="font-mono text-xs uppercase tracking-widest text-brand-steel-light bg-brand-steel-medium/20 px-3 py-1 border border-brand-steel-light/20">
+                          {proc.step}
+                        </span>
+                      </div>
+
+                      {/* Header Title with Custom Icon */}
+                      <div className={`flex items-center gap-4 mb-4 ${isEven ? 'justify-start' : 'justify-start lg:justify-end'}`}>
+                        {!isEven && <span className="font-display font-medium text-lg text-white hidden lg:inline">{proc.title}</span>}
+                        <div className="w-10 h-10 bg-brand-steel-medium flex items-center justify-center text-white" style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 15% 100%)' }}>
+                          <StepIcon className="w-5 h-5" />
+                        </div>
+                        {(isEven || !isEven) && <span className="font-display font-bold text-lg text-white lg:hidden">{proc.title}</span>}
+                        {isEven && <span className="font-display font-medium text-lg text-white hidden lg:inline">{proc.title}</span>}
+                      </div>
+
+                      {/* Card Paragraph Description */}
+                      <p className="text-gray-300 text-sm leading-relaxed font-sans mt-3">
+                        {proc.description}
+                      </p>
+                      
+                      {/* Metric summary */}
+                      <p className="mt-6 text-[10px] font-mono text-brand-steel-light/75 uppercase tracking-widest">
+                        Focus Standard Operations Pipeline
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Centered Node / Badge (Desktop) */}
+                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center z-10 hidden lg:flex">
+                    <div className="w-8 h-8 rounded-full bg-brand-navy border-4 border-brand-steel-light flex items-center justify-center shadow-md">
+                      <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Empty Column spacer (Desktop) */}
+                  <div className="w-full lg:w-1/2 lg:px-8 hidden lg:block" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/MeetTeam.tsx">
+import React, { useState } from 'react';
+import { TEAM_MEMBERS } from '../data';
+import { Linkedin, Mail, BadgeCheck, PhoneCall, Copy, Check } from 'lucide-react';
+
+export default function MeetTeam() {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  return (
+    <section id="team" className="relative py-24 bg-white text-gray-900 overflow-hidden">
+      {/* Background soft geometric details */}
+      <div className="absolute top-0 left-0 w-[40%] h-full bg-slate-50 z-0" style={{ clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0% 100%)' }} />
+      <div className="absolute bottom-0 right-0 w-24 h-24 bg-brand-steel-light/10" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center space-x-2 text-brand-steel-medium font-mono text-xs uppercase tracking-widest mb-3 justify-center">
+            <span className="w-8 h-[1px] bg-brand-steel-medium" />
+            <span>LEADERSHIP EXCELLENCE</span>
+            <span className="w-8 h-[1px] bg-brand-steel-medium" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-navy uppercase tracking-tight">
+            Meet Our Team
+          </h2>
+          <p className="mt-4 text-xs font-mono text-gray-500 uppercase tracking-widest">
+            Cross-continental industrial operators averaging 15+ years experience
+          </p>
+        </div>
+
+        {/* Grid Profile Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {TEAM_MEMBERS.map((member) => (
+            <div
+              key={member.id}
+              className="bg-white border border-slate-200/80 p-6 sm:p-8 hover:border-brand-steel-light hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative group shadow-sm hover:shadow-lg"
+              style={{
+                clipPath: 'polygon(0 0, 100% 0, 100% 93%, 92% 100%, 0 100%)'
+              }}
+            >
+              {/* Top Accent line */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-brand-navy group-hover:bg-brand-steel-light transition-colors" />
+
+              <div>
+                {/* Upper Meta */}
+                <div className="flex justify-between items-start mb-6">
+                  {/* Dynamic Team Member Avatar (Geometric frame supporting images or initials fallback) */}
+                    <div className="w-18 h-18 bg-brand-navy flex items-center justify-center text-white text-lg font-display font-black tracking-wider overflow-hidden"
+                      style={{ clipPath: 'polygon(15% 0, 100% 0, 85% 100%, 0 100%)' }}
+                    >
+                      {member.imageUrl ? (
+                        <img 
+                          src={member.imageUrl} 
+                          alt={member.name} 
+                         className="w-full h-full object-top object-cover group-hover:scale-110 transition-transform duration-350"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        member.name.split(' ').map(n => n[0]).join('')
+                      )}
+                    </div>
+                  <div className="flex items-center space-x-1 bg-slate-100 px-2.5 py-1 text-[10px] font-mono font-bold text-brand-navy uppercase">
+                    <BadgeCheck className="w-3 h-3 text-brand-steel-medium" />
+                    <span>Verified Expert</span>
+                  </div>
+                </div>
+
+                {/* Name & Role */}
+                <h3 className="font-display font-black text-base text-brand-navy tracking-wide uppercase">
+                  {member.name}
+                </h3>
+                <p className="font-mono text-[11px] text-brand-steel-medium uppercase tracking-wider mt-1.5 font-bold">
+                  {member.role}
+                </p>
+
+                {/* Experience text with elegant checklist representation */}
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-brand-steel-light rotate-45 transform" />
+                  <span className="text-xs text-gray-650 font-sans font-medium">
+                    {member.experience}
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom Communication Section */}
+              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[10px] uppercase font-mono text-gray-400">Direct Contact</span>
+                {member.type === 'linkedin' ? (
+                  <a
+                    href={`https://${member.contactUrl}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center space-x-1 text-xs font-mono text-brand-steel-medium hover:text-brand-navy font-bold transition-colors"
+                  >
+                    <Linkedin className="w-3.5 h-3.5" />
+                    <span className="underline">Profile Link</span>
+                  </a>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <a
+                      href={`mailto:${member.contactUrl}`}
+                      className="inline-flex items-center space-x-1 text-xs font-mono text-brand-steel-medium hover:text-brand-navy transition-colors font-bold"
+                      title={`Email ${member.name}`}
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      <span className="underline truncate max-w-[120px]">{member.contactUrl.split('@')[0]}</span>
+                    </a>
+                    <button
+                      onClick={() => handleCopy(member.contactUrl, member.id)}
+                      className="p-1 text-gray-400 hover:text-brand-steel-medium transition-colors"
+                      title="Copy email to clipboard"
+                    >
+                      {copiedId === member.id ? (
+                        <Check className="w-3 h-3 text-emerald-500" />
+                      ) : (
+                        <Copy className="w-3 h-3" />
+                      )}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/Navbar.tsx">
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Globe } from 'lucide-react';
+
+interface NavbarProps {
+  activeSection: string;
+}
+
+export default function Navbar({ activeSection }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Success Stories', href: '#success-stories' },
+    { name: 'Team', href: '#team' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-350 ${
+        isScrolled 
+          ? 'bg-brand-navy/95 shadow-md backdrop-blur-md py-4 border-b border-brand-steel-medium/20' 
+          : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-12">
+          {/* Logo Section */}
+          <a href="#home" className="flex items-center space-x-3 group">
+            {/* Custom styled SVG or icon representation of "blue globe with a swoosh" */}
+            <div className="relative w-10 h-10 flex items-center justify-center bg-brand-steel-medium/10 rounded-full border border-brand-steel-light/30 overflow-hidden">
+              <Globe className="w-6 h-6 text-brand-steel-light group-hover:rotate-12 transition-transform duration-500" />
+              {/* Swoosh */}
+              <div className="absolute top-1/2 left-0 w-12 h-1 bg-gradient-to-r from-transparent via-brand-steel-light/60 to-transparent rotate-[-30deg] transform -translate-y-1/2 animate-pulse" />
+            </div>
+            <div>
+              <span className="font-display text-2xl tracking-[0.25em] font-black text-white hover:text-brand-steel-light transition-colors">
+                FOCUS
+              </span>
+              <span className="hidden sm:inline-block ml-2 text-[10px] font-mono tracking-widest text-brand-steel-light/80 uppercase">
+                GROUP
+              </span>
+            </div>
+          </a>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center space-x-1">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`px-4 py-2 text-xs font-mono tracking-wider uppercase transition-all duration-200 relative ${
+                    isActive
+                      ? 'text-white font-bold'
+                      : 'text-gray-300 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-brand-steel-light" />
+                  )}
+                  {/* Decorative Diagonal Corner on Hover */}
+                  <span className="absolute top-0 right-0 w-1 h-1 border-t border-r border-brand-steel-light/0 group-hover:border-brand-steel-light/55 transition-all" />
+                </a>
+              );
+            })}
+            <a
+              href="#contact"
+              className="ml-6 px-4 py-2 bg-brand-steel-medium hover:bg-brand-steel-light text-white text-xs font-mono uppercase tracking-wider transition-all clip-chevron duration-300 shadow-sm"
+              style={{ clipPath: 'polygon(5% 0, 100% 0, 95% 100%, 0 100%)' }}
+            >
+              Get in Touch
+            </a>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-brand-navy focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-steel-light"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+        } bg-brand-navy border-b border-brand-steel-medium/35`}
+      >
+        <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-brand-navy">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`block px-4 py-3 rounded-md text-sm font-mono tracking-widest uppercase transition-all ${
+                  isActive
+                    ? 'bg-brand-steel-medium text-white font-bold'
+                    : 'text-gray-300 hover:bg-brand-navy-light hover:text-white'
+                }`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
+          <div className="pt-4 px-4">
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-center px-4 py-3 bg-brand-steel-medium text-white text-xs font-mono uppercase tracking-wider rounded"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+</file>
+
+<file path="src/components/Projects.tsx">
+import React, { useState } from 'react';
+import { CURRENT_PROJECTS, UPCOMING_PROJECTS } from '../data';
+import { Briefcase, Calendar, CheckCircle2, ChevronRight, Compass, Layers, Hourglass } from 'lucide-react';
+
+export default function Projects() {
+  const [activeTab, setActiveTab] = useState<'current' | 'upcoming'>('current');
+
+  return (
+    <section id="projects" className="relative py-24 bg-brand-navy text-white overflow-hidden">
+      {/* Background geometric slices */}
+      <div 
+        className="absolute bottom-0 right-0 w-[40%] h-1/2 bg-brand-steel-medium/10 pointer-events-none" 
+        style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }}
+      />
+      <div 
+        className="absolute top-0 left-0 w-[20%] h-1/3 bg-brand-steel-light/10 pointer-events-none" 
+        style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-gray-800">
+          <div>
+            <div className="flex items-center space-x-2 text-brand-steel-light font-mono text-xs uppercase tracking-widest mb-3">
+              <span className="w-6 h-[1px] bg-brand-steel-light" />
+              <span>COMMERCIAL FOOTPRINT</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-display font-black uppercase tracking-tight">
+              Our <span className="text-brand-steel-light">Projects</span>
+            </h2>
+            <p className="mt-2 text-xs text-gray-400 font-mono uppercase tracking-widest">
+              A record of execution & custom-manufacturing delivery
+            </p>
+          </div>
+
+          {/* Interactive Modern Toggles */}
+          <div className="mt-6 md:mt-0 flex space-x-2 bg-brand-navy-light/40 p-1.5 border border-gray-800 rounded-none">
+            <button
+              onClick={() => setActiveTab('current')}
+              className={`px-6 py-2.5 text-xs font-mono tracking-wider uppercase transition-all flex items-center gap-2 ${
+                activeTab === 'current'
+                  ? 'bg-brand-steel-medium text-white font-bold'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+              style={{ clipPath: 'polygon(5% 0, 100% 0, 95% 100%, 0 100%)' }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Active (2024–2025)
+            </button>
+            <button
+              onClick={() => setActiveTab('upcoming')}
+              className={`px-6 py-2.5 text-xs font-mono tracking-wider uppercase transition-all flex items-center gap-2 ${
+                activeTab === 'upcoming'
+                  ? 'bg-brand-steel-medium text-white font-bold'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+              style={{ clipPath: 'polygon(5% 0, 100% 0, 95% 100%, 0 100%)' }}
+            >
+              <Hourglass className="w-3.5 h-3.5" />
+              Upcoming (2026)
+            </button>
+          </div>
+        </div>
+
+        {/* Dynamic Project Panels */}
+        <div className="mt-8">
+          {activeTab === 'current' ? (
+            <div>
+              {/* Dashboard stats panel */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <div className="bg-brand-navy-light/60 border-l-4 border-brand-steel-light p-5" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 0 100%)' }}>
+                  <span className="block text-xs font-mono text-brand-steel-light uppercase tracking-wider">Scope Term</span>
+                  <span className="text-xl font-display font-bold uppercase mt-1">2024 — 2025</span>
+                </div>
+                <div className="bg-brand-navy-light/60 border-l-4 border-brand-steel-medium p-5" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 0 100%)' }}>
+                  <span className="block text-xs font-mono text-brand-steel-light uppercase tracking-wider">Total Deliveries</span>
+                  <span className="text-xl font-display font-bold uppercase mt-1">{CURRENT_PROJECTS.length} Major Engineering Supplies</span>
+                </div>
+                <div className="bg-brand-navy-light/60 border-l-4 border-slate-500 p-5" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 0 100%)' }}>
+                  <span className="block text-xs font-mono text-brand-steel-light uppercase tracking-wider">Status Code</span>
+                  <span className="text-xl font-display font-bold uppercase mt-1 text-emerald-400 flex items-center gap-1.5">
+                    ● SUCCESSFUL/ONGOING
+                  </span>
+                </div>
+              </div>
+
+              {/* Grid Layout of Items */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {CURRENT_PROJECTS.map((proj, idx) => (
+                  <div
+                    key={proj.id}
+                    className="bg-brand-navy-light/40 border border-gray-800 p-6 hover:bg-brand-steel-medium/10 hover:border-brand-steel-light/60 transition-all duration-300 flex flex-col justify-between"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 90%, 93% 100%, 0 100%)',
+                    }}
+                  >
+                    <div>
+                      {/* Badge / Index mark */}
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-[10px] font-mono text-brand-steel-light uppercase tracking-widest bg-brand-steel-medium/20 px-2 py-0.5 border border-brand-steel-light/10">
+                          Active Asset
+                        </span>
+                        <span className="text-[10px] font-mono text-gray-500 font-bold">
+                          #{(idx + 1).toString().padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h4 className="font-display font-bold text-sm tracking-wide text-white uppercase leading-snug">
+                        {proj.title}
+                      </h4>
+
+                      {/* Associated Client Partnership Name */}
+                      {proj.partnership && (
+                        <div className="mt-2.5 flex items-center space-x-1.5">
+                          <span className="text-[10px] font-mono uppercase text-gray-400">PARTNER:</span>
+                          <span className="text-[10px] font-mono uppercase bg-brand-steel-light/10 text-brand-steel-light px-1.5 py-0.5">
+                            {proj.partnership}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Footer decoration */}
+                    <div className="mt-8 pt-4 border-t border-gray-800/40 flex items-center justify-between text-[10px] font-mono text-gray-400">
+                      <span>Industrial Supply Group</span>
+                      <ChevronRight className="w-3.5 h-3.5 text-brand-steel-light" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div>
+              {/* Dashboard stats panel */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <div className="bg-brand-navy-light/60 border-l-4 border-brand-steel-light p-5" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 0 100%)' }}>
+                  <span className="block text-xs font-mono text-brand-steel-light uppercase tracking-wider">Scope Term</span>
+                  <span className="text-xl font-display font-bold uppercase mt-1 text-brand-steel-light">2026 FUTURE FOCUS</span>
+                </div>
+                <div className="bg-brand-navy-light/60 border-l-4 border-brand-steel-medium p-5" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 0 100%)' }}>
+                  <span className="block text-xs font-mono text-brand-steel-light uppercase tracking-wider">Upcoming Backlog</span>
+                  <span className="text-xl font-display font-bold uppercase mt-1">{UPCOMING_PROJECTS.length} Major Implementations</span>
+                </div>
+                <div className="bg-brand-navy-light/60 border-l-4 border-amber-500 p-5" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 0 100%)' }}>
+                  <span className="block text-xs font-mono text-brand-steel-light uppercase tracking-wider">Tendering Status</span>
+                  <span className="text-xl font-display font-bold uppercase mt-1 text-amber-400 flex items-center gap-1.5">
+                    ● ALLOCATION & TESTING
+                  </span>
+                </div>
+              </div>
+
+              {/* Grid Layout of Upcoming items */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {UPCOMING_PROJECTS.map((proj, idx) => (
+                  <div
+                    key={proj.id}
+                    className="bg-brand-navy-light/40 border border-amber-500/10 hover:border-brand-steel-light/60 p-6 hover:bg-brand-steel-medium/10 transition-all duration-300 flex flex-col justify-between"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 90%, 93% 100%, 0 100%)',
+                    }}
+                  >
+                    <div>
+                      {/* Badge / Index mark */}
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-[10px] font-mono text-amber-400 uppercase tracking-widest bg-amber-400/10 px-2.5 py-0.5 border border-amber-400/20">
+                          2026 Pipeline
+                        </span>
+                        <span className="text-[10px] font-mono text-gray-500 font-bold">
+                          #{(idx + 1).toString().padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h4 className="font-display font-bold text-sm tracking-wide text-white uppercase leading-snug">
+                        {proj.title}
+                      </h4>
+
+                      {/* Client Partnership info if present */}
+                      {proj.partnership && (
+                        <div className="mt-2.5 flex items-center space-x-1.5">
+                          <span className="text-[10px] font-mono uppercase text-gray-400">PARTNER:</span>
+                          <span className="text-[10px] font-mono uppercase bg-brand-steel-light/10 text-brand-steel-light px-1.5 py-0.5">
+                            {proj.partnership}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Footer decoration */}
+                    <div className="mt-8 pt-4 border-t border-gray-800/40 flex items-center justify-between text-[10px] font-mono text-gray-500">
+                      <span>System Architecture Supply</span>
+                      <Compass className="w-3.5 h-3.5 text-brand-steel-light" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/Services.tsx">
+import React from 'react';
+import { SERVICES, BOTTOM_CALLOUT_TEXT } from '../data';
+import * as Icons from 'lucide-react';
+
+export default function Services() {
+  // Helper to dynamically render a Lucide icon component with strict fallback
+  const renderIcon = (name: string) => {
+    // Cast Icons containing specific components
+    const IconComponent = (Icons as any)[name];
+    if (IconComponent) {
+      return <IconComponent className="w-6 h-6 text-brand-steel-light group-hover:text-white transition-colors duration-300" />;
+    }
+    return <Icons.HelpCircle className="w-6 h-6 text-brand-steel-light" />;
+  };
+
+  return (
+    <section id="services" className="relative py-24 bg-slate-50 text-gray-900 overflow-hidden">
+      {/* Background diagonal decorative touches */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-brand-navy/5" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
+      <div className="absolute bottom-0 right-0 w-48 h-48 bg-brand-steel-medium/5" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        
+        {/* Intro Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center space-x-2 text-brand-steel-medium font-mono text-xs uppercase tracking-widest mb-3 justify-center">
+            <span className="w-3 h-1.5 bg-brand-steel-medium" style={{ clipPath: 'polygon(0 0, 100% 0, 75% 100%, 25% 100%)' }} />
+            <span>OUR CORE SOLUTIONS</span>
+            <span className="w-3 h-1.5 bg-brand-steel-medium" style={{ clipPath: 'polygon(0 0, 100% 0, 75% 100%, 25% 100%)' }} />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-navy uppercase tracking-tight">
+            Focus Services
+          </h2>
+
+          <p className="mt-4 text-gray-650 text-sm sm:text-base leading-relaxed">
+            In a fast-paced world, we are always ready. We are dedicated to serving your business — we are not just a trading partner or shipping agent. We build cross-continental bridges toward fruitful cooperation.
+          </p>
+        </div>
+
+        {/* 8-Card Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SERVICES.map((service, index) => (
+            <div
+              key={service.id}
+              className="group relative bg-white p-6 sm:p-8 border border-slate-200 hover:border-brand-steel-light hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-xl"
+              style={{
+                clipPath: 'polygon(0 0, 100% 0, 100% 92%, 90% 100%, 0 100%)',
+              }}
+            >
+              {/* Top half */}
+              <div>
+                {/* Numeric label index */}
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 bg-brand-navy/5 group-hover:bg-brand-steel-medium flex items-center justify-center transition-all duration-300 rounded-none border border-slate-200/50 group-hover:border-transparent"
+                    style={{ clipPath: 'polygon(15% 0, 100% 0, 85% 100%, 0 100%)' }}
+                  >
+                    {renderIcon(service.iconName)}
+                  </div>
+                  <span className="font-mono text-xs text-slate-350 tracking-wider">
+                    {(index + 1).toString().padStart(2, '0')}
+                  </span>
+                </div>
+
+                <h3 className="font-display font-bold text-sm text-brand-navy group-hover:text-brand-steel-medium tracking-wide uppercase transition-colors duration-200">
+                  {service.title}
+                </h3>
+
+                <p className="mt-3 text-xs text-gray-650 leading-relaxed font-sans">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Bottom decorative arrow / chevron anchor link feedback */}
+              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-slate-350 group-hover:text-brand-steel-medium transition-colors">
+                <span>Core Pillar</span>
+                <Icons.ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:-translate-y-0 transition-all duration-300" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Prominent Callout Banner (Dark Navy) */}
+        <div 
+          className="mt-16 bg-brand-navy text-white relative overflow-hidden shadow-xl"
+          style={{
+            clipPath: 'polygon(2% 0, 100% 0, 98% 100%, 0 100%)',
+          }}
+        >
+          {/* Subtle geometric line overlay patterns */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div className="absolute top-0 right-[20%] w-12 h-full bg-brand-steel-light rotate-[30deg] transform" />
+            <div className="absolute top-0 right-[25%] w-4 h-full bg-brand-steel-light rotate-[30deg] transform" />
+          </div>
+
+          <div className="px-8 py-10 md:py-12 md:px-16 text-center relative z-10 max-w-5xl mx-auto">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-brand-steel-light block mb-4">
+              Our Visionary Code
+            </span>
+            <p className="text-sm sm:text-lg md:text-xl font-display font-black tracking-wide leading-relaxed uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-brand-steel-light">
+              "{BOTTOM_CALLOUT_TEXT}"
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/SuccessStories.tsx">
+import React from 'react';
+import { SUCCESS_STORIES } from '../data';
+import { Award, Landmark, MapPin, Settings2 } from 'lucide-react';
+
+export default function SuccessStories() {
+  const icons = [Landmark, Award, Settings2];
+
+  return (
+    <section id="success-stories" className="relative py-24 bg-brand-navy border-b border-gray-800 text-white overflow-hidden">
+      {/* Background diagonal cut shapes */}
+      <div 
+        className="absolute top-0 right-0 w-[40%] h-[35%] bg-gradient-to-bl from-brand-steel-medium/10 to-transparent pointer-events-none"
+        style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
+      />
+      <div 
+        className="absolute bottom-0 left-0 w-24 h-48 bg-brand-steel-light/5 pointer-events-none"
+        style={{ clipPath: 'polygon(0 0, 100% 100%, 0 100%)' }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+
+        {/* Header Block */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center space-x-2 text-brand-steel-light font-mono text-xs uppercase tracking-[0.25em] mb-3">
+            <span className="w-8 h-[1px] bg-brand-steel-light" />
+            <span>CASE STUDIES</span>
+            <span className="w-8 h-[1px] bg-brand-steel-light" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-display font-black uppercase tracking-tight text-white">
+            Successful <span className="text-brand-steel-light">Stories</span>
+          </h2>
+          <p className="mt-4 text-xs font-mono text-gray-400 uppercase tracking-widest leading-relaxed">
+            Proven engineering excellence, structural urban design, & specialized logistics
+          </p>
+        </div>
+
+        {/* 3 Story Cards Display */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {SUCCESS_STORIES.map((story, ind) => {
+            const StoryIcon = icons[ind];
+            return (
+              <div 
+                key={story.id}
+                className="bg-brand-navy-light/40 border border-gray-800 hover:border-brand-steel-light/70 hover:bg-brand-navy-light/80 transition-all duration-300 flex flex-col group overflow-hidden"
+                style={{
+                  clipPath: 'polygon(0 0, 100% 0, 100% 95%, 93% 100%, 0  100%)'
+                }}
+              >
+                {/* Image Section */}
+                <div className="relative h-56 w-full overflow-hidden border-b border-gray-800">
+                  <div className="absolute inset-0 bg-brand-navy/30 group-hover:bg-transparent z-10 transition-colors duration-300" />
+                  <img 
+                    src={story.imageUrl} 
+                    alt={story.title} 
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  {/* Decorative sharp-cut Chevron on corner of image */}
+                  <div className="absolute bottom-0 right-0 bg-brand-navy px-4 py-2 text-[10px] font-mono uppercase tracking-wider text-brand-steel-light border-t border-l border-gray-800 z-20"
+                    style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)' }}
+                  >
+                    Active Site
+                  </div>
+                </div>
+
+                {/* Body Content */}
+                <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    {/* Location Tag */}
+                    <div className="flex items-center space-x-1.5 text-xs font-mono text-brand-steel-light mb-3 uppercase tracking-wider">
+                      <MapPin className="w-3.5 h-3.5 text-brand-steel-light" />
+                      <span>{story.location}</span>
+                    </div>
+
+                    {/* Header Title with Mini Icon */}
+                    <div className="flex items-start gap-3">
+                      <div className="w-7 h-7 bg-brand-steel-medium/20 flex items-center justify-center text-brand-steel-light mt-0.5 rounded-none flex-shrink-0">
+                        <StoryIcon className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-display font-black text-base text-white uppercase tracking-wider leading-snug group-hover:text-brand-steel-light transition-colors">
+                        {story.title}
+                      </h3>
+                    </div>
+
+                    {/* Detailed Paragraph */}
+                    <p className="mt-4 text-xs text-gray-300 leading-relaxed font-sans">
+                      {story.description}
+                    </p>
+                  </div>
+
+                  {/* Operational Pillar Statement */}
+                  <div className="mt-8 pt-4 border-t border-gray-800/60 flex items-center justify-between text-[10px] font-mono text-gray-500">
+                    <span>Engineering Deliverable</span>
+                    <span>Approved Status</span>
+                  </div>
+                </div>
+
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/data.ts">
+import { ServiceItem, ProcessStep, ProjectItem, SuccessStory, TeamMember, ContactInfo } from './types';
+
+export const BRAND = {
+  name: "FOCUS",
+  companyName: "Focus Group",
+  tagline: "STAY FOCUSED — Get it DONE",
+  logoPlaceholder: "FOCUS",
+  aboutText: "Focus is your industrial, commercial, and technological partner. If your business involves specialized engineering supplies, Focus is your best source for products directly from manufacturers — not just sourcing, but also product development and custom modifications to perfectly match your target applications. We have the experience to study required products, select the right solutions for your projects, and offer an unmatched network of relationships and accumulated partnerships in a fast-moving world. Our service network spans global cities: Cairo, Damietta, Mansoura, Riyadh, Mecca, Guangzhou, Hong Kong, and Istanbul — serving you from the Far East to the Mediterranean.",
+};
+
+export const SERVICES: ServiceItem[] = [
+  {
+    id: "logistics",
+    title: "Business & Integrated Logistics",
+    description: "Full door-to-door supply chain management, sea/air/land shipping, customs handling, product tracking & insurance.",
+    iconName: "Truck"
+  },
+  {
+    id: "packaging",
+    title: "Design & Packaging Services",
+    description: "Heritage-inspired visual identity designs, innovative packaging solutions, premium materials and techniques.",
+    iconName: "Palette"
+  },
+  {
+    id: "procurement",
+    title: "Procurement Consulting & Project Resources",
+    description: "Connecting clients with top suppliers for materials and products, tendering support for commercial scales.",
+    iconName: "Handshake"
+  },
+  {
+    id: "engineering",
+    title: "Specialized Engineering & Technical Solutions",
+    description: "Smart irrigation systems, auto parts & industrial materials supply, industrial efficiency consulting.",
+    iconName: "Cpu"
+  },
+  {
+    id: "financial",
+    title: "Safe & Flexible Financial Solutions",
+    description: "Acting as a secondary bank for managing purchases and international payments, with balanced payment scheduling.",
+    iconName: "ShieldCheck"
+  },
+  {
+    id: "licensing",
+    title: "International Licensing",
+    description: "Export licenses in China and Hong Kong, import cards in Egypt, One-Stop Consulting platform, facilitating market access.",
+    iconName: "Globe"
+  },
+  {
+    id: "urban-design",
+    title: "Cultural Studies & Urban Design",
+    description: "Heritage and contemporary city designs, innovative lighting solutions for public spaces, and cityscape design contributions.",
+    iconName: "Compass"
+  },
+  {
+    id: "product-dev",
+    title: "Product Development & Simplification",
+    description: "Analyzing and improving existing products for easier use, reducing maintenance complexity and extending product life.",
+    iconName: "Zap"
+  }
+];
+
+export const BOTTOM_CALLOUT_TEXT = "WE ARE NOT JUST AN EXPORTING COMPANY, NOT JUST CARGO HANDLING — WE ARE POWERING TRADE CONNECTIONS, BUILDING TRUST BRIDGES ACROSS THE GLOBE";
+
+export const PROCESS_STEPS: ProcessStep[] = [
+  {
+    step: "Process 01",
+    title: "Analyze and Partner",
+    description: "Let us help build an image of your business scope and understand the challenges you face."
+  },
+  {
+    step: "Process 02",
+    title: "Innovate and Optimize",
+    description: "We find multiple solutions and alternatives, racing against time to find the best choices for your upcoming decisions."
+  },
+  {
+    step: "Process 03",
+    title: "Deliver and Scale",
+    description: "We start your order and keep you updated on all parameters for close follow-up of your investment."
+  }
+];
+
+export const CURRENT_PROJECTS: ProjectItem[] = [
+  { id: "p1", title: "Vitamins Gummy Candy", partnership: "Granty Food" },
+  { id: "p2", title: "Capsule Blistering", partnership: "Eva Pharma" },
+  { id: "p3", title: "Tunnel Fan", partnership: "Alarkan Alkhaliejie" },
+  { id: "p4", title: "Mekkah Street Light" },
+  { id: "p5", title: "Mekkah Urban Light Decoration" },
+  { id: "p6", title: "Jeddah IoT SCADA Light Control" },
+  { id: "p7", title: "Irrigation Systems for Sons Valley" },
+  { id: "p8", title: "Geogrid for Public Project at Saudi" },
+  { id: "p9", title: "Safety Special Products for Dabaa Roseatom" },
+  { id: "p10", title: "Dehumidifier for Surgery Rooms" },
+  { id: "p11", title: "Dental Labs Machinery" },
+  { id: "p12", title: "Pet Block Board", partnership: "Almottahida Wood" }
+];
+
+export const UPCOMING_PROJECTS: ProjectItem[] = [
+  { id: "u1", title: "Dabaa Nuclear Supply" },
+  { id: "u2", title: "Al Qurayyat Park Scape Water Jet Project" },
+  { id: "u3", title: "Damietta Port Twist Locking Systems" },
+  { id: "u4", title: "Agricultural Machinery and Irrigation Systems" },
+  { id: "u5", title: "Jeddah High Power LED Bay Light" },
+  { id: "u6", title: "Riyadh Pole Light Decoration Project" },
+  { id: "u7", title: "Electric Utility Vehicle Multi Use", partnership: "Industrial & Agriculture" },
+  { id: "u8", title: "Police Academy Safety Wearable Products" },
+  { id: "u9", title: "Dangerous Goods Transport from Dallas to Alexandria" },
+  { id: "u10", title: "High Rise Building Safety Equipment" }
+];
+
+export const SUCCESS_STORIES: SuccessStory[] = [
+  {
+    id: "s1",
+    title: "Holy City Mecca Gate",
+    location: "Mecca Gate Entrance, Saudi Arabia",
+    description: "Designed, sourced, and supervised the installation of premium high-output LED wall washers at the iconic Mecca Gate entrance, creating a pristine nightscape that honors the holy city's cultural heritage.",
+    imageUrl: "/mekka_gate.jpg"
+  },
+  {
+    id: "s2",
+    title: "Dawarik Square, Mecca City",
+    location: "Mecca City Center",
+    description: "Created comprehensive urban lighting decoration proposals for a major city square. Contributed structural blueprints and highly specialized illuminated fountain structures that operate with smart flow-control systems.",
+    imageUrl: "/dawarik_square.jpg"
+  },
+  {
+    id: "s3",
+    title: "Gummy Vitamin Production",
+    location: "Granty Food Facility",
+    description: "Engineered and custom-manufactured a specialized desiccant dehumidifier system for vitamin gummy candy production lines. This solution ensured highly precise humidity and moisture boundaries critical for the delicate packaging phase.",
+    imageUrl: "/gummy.jpg"
+  }
+];
+
+export const TEAM_MEMBERS: TeamMember[] = [
+  {
+    id: "t1",
+    name: "Mohamed Youssef",
+    role: "CEO of Focus Group",
+    experience: "24 years of experience",
+    contactUrl: "linkedin.com/in/focusautotrade",
+    type: "linkedin",
+    imageUrl: "/my.jpeg"
+  },
+  {
+    id: "t2",
+    name: "Ahmed Youssef",
+    role: "Director of Focus Group",
+    experience: "24 years of experience",
+    contactUrl: "linkedin.com/in/focusmco",
+    type: "linkedin",
+    imageUrl: "/ay.jpeg"
+  },
+  {
+    id: "t3",
+    name: "Pancy Ho",
+    role: "Export Manager",
+    experience: "14 years of experience",
+    contactUrl: "pancy@focusmco.com.hk",
+    type: "email",
+    imageUrl: "/ph.jpg"
+  },
+  {
+    id: "t4",
+    name: "Eissa",
+    role: "Auto Parts Supply Chain Specialist",
+    experience: "12 years of experience",
+    contactUrl: "eissa@focusmco.com.hk",
+    type: "email",
+    imageUrl: "/eissa.jpg"
+  },
+  {
+    id: "t5",
+    name: "Abdelrahman",
+    role: "Relations Manager",
+    experience: "7 years of experience",
+    contactUrl: "Rm@focusautotrade.com",
+    type: "email",
+    imageUrl: "/abdo.jpg"
+  }
+];
+
+export const VALUES = [
+  "Integrity",
+  "Accountability",
+  "Customer Commitment",
+  "Innovation",
+  "Teamwork",
+  "Respect"
+];
+
+export const VALUES_QUOTE = {
+  quote: "CHANCES LOVE READY",
+  subtext: "Our company is ready to serve your difficult and complicated projects. We love challenges and thrive under pressure."
+};
+
+export const CONTACT_HEAD_OFFICE: ContactInfo = {
+  phone: "+01020279999",
+  email: "INFO@FOCUSMCO.COM",
+  website: "WWW.FOCUSAUTOTRADE.COM",
+  address: "EL Akhbar St., No. 1258 Square, Building No. 2, Apartment No. 4, Egypt"
+};
+
+export const CONTACT_CHINA_BRANCH: ContactInfo = {
+  phone: "+8613533334309",
+  email: "SALES@FOCUSMCO.COM.HK",
+  address: "No. 906, Crowne Plaza, No. 399 Huanshi E Road, Guangzhou, China, 510098"
+};
+</file>
+
+<file path="src/index.css">
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-navy: #1B2A4A;
+  --color-brand-steel-medium: #4A6FA5;
+  --color-brand-steel-light: #8AACC8;
+}
+
+/* Custom Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom styles for geometric diagonal blocks or angled dividers */
+.diagonal-bg-left {
+  position: relative;
+}
+.diagonal-bg-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-brand-navy);
+  clip-path: polygon(0 0, 100% 4%, 100% 96%, 0% 100%);
+  z-index: -1;
+}
+
+/* Utility to hold animations or styling */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+</file>
+
+<file path="src/main.tsx">
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
+</file>
+
+<file path="src/types.ts">
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  iconName: string; // Used to dynamically map Lucide icons
+}
+
+export interface ProcessStep {
+  step: string; // e.g., "Process 01"
+  title: string;
+  description: string;
+}
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  partnership?: string; // e.g., "(Granty Food)"
+}
+
+export interface SuccessStory {
+  id: string;
+  title: string;
+  location: string;
+  description: string;
+  imageUrl: string;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  experience: string; // e.g., "24 years of experience"
+  contactUrl: string; // e.g., "linkedin.com/in/..." or email
+  type: 'linkedin' | 'email';
+  imageUrl?: string;
+}
+
+export interface ContactInfo {
+  phone: string;
+  email: string;
+  website?: string;
+  address: string;
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  }
+}
+</file>
+
+<file path="vite.config.ts">
+import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import {defineConfig} from 'vite';
+
+export default defineConfig(() => {
+  return {
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '.'),
+      },
+    },
+    server: {
+      // HMR is disabled in AI Studio via DISABLE_HMR env var.
+      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      hmr: process.env.DISABLE_HMR !== 'true',
+      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
+      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+    },
+  };
+});
+</file>
+
+</files>
