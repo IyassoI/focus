@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CONTACT_HEAD_OFFICE, CONTACT_CHINA_BRANCH } from '../data';
 import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, RefreshCw } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -17,22 +18,38 @@ export default function Contact() {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formState.name || !formState.email || !formState.message) {
-      setErrorMess('Please provide your name, email, and a message.');
-      return;
-    }
-    setErrorMess('');
-    setIsSubmitting(true);
+  
 
-    // Simulate reliable API post
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormState({ name: '', email: '', message: '' });
-    }, 1500);
-  };
+const handleFormSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!formState.name || !formState.email || !formState.message) {
+    setErrorMess('Please provide your name, email, and a message.');
+    return;
+  }
+  setErrorMess('');
+  setIsSubmitting(true);
+
+  emailjs.send(
+    'YOUR_SERVICE_ID',       // from Step 1
+    'YOUR_TEMPLATE_ID',      // from Step 1
+    {
+      from_name: formState.name,
+      from_email: formState.email,
+      message: formState.message,
+    },
+    'YOUR_PUBLIC_KEY'        // from Step 1
+  )
+  .then(() => {
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setFormState({ name: '', email: '', message: '' });
+  })
+  .catch((error) => {
+    setIsSubmitting(false);
+    setErrorMess('Something went wrong. Please try again or contact us directly.');
+    console.error('EmailJS error:', error);
+  });
+};
 
   return (
     <section id="contact" className="relative py-24 bg-brand-navy border-b border-gray-800 text-white overflow-hidden">
