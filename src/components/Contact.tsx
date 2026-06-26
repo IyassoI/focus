@@ -37,7 +37,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
       from_email: formState.email,
       message: formState.message,
     },
-    'YOUR_PUBLIC_KEY'        // from Step 1
+    'O5McarhmvoYZEPvIs'        // from Step 1
   )
   .then(() => {
     setIsSubmitting(false);
