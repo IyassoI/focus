@@ -30,8 +30,8 @@ const handleFormSubmit = (e: React.FormEvent) => {
   setIsSubmitting(true);
 
   emailjs.send(
-    'YOUR_SERVICE_ID',       // from Step 1
-    'YOUR_TEMPLATE_ID',      // from Step 1
+    'service_589piif',       // from Step 1
+    'template_1n5yret',      // from Step 1
     {
       from_name: formState.name,
       from_email: formState.email,
