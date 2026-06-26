@@ -64,11 +64,16 @@ src/components/HowItWorks.tsx
 src/components/MeetTeam.tsx
 src/components/Navbar.tsx
 src/components/Projects.tsx
+src/components/ScrollToTop.tsx
 src/components/Services.tsx
 src/components/SuccessStories.tsx
 src/data.ts
 src/index.css
 src/main.tsx
+src/pages/AboutPage.tsx
+src/pages/ContactPage.tsx
+src/pages/Home.tsx
+src/pages/ServicesPage.tsx
 src/types.ts
 tsconfig.json
 vite.config.ts
@@ -76,6 +81,83 @@ vite.config.ts
 
 <files>
 This section contains the contents of the repository's files.
+
+<file path="src/components/ScrollToTop.tsx">
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+</file>
+
+<file path="src/pages/AboutPage.tsx">
+import React from 'react';
+import About from '../components/About';
+import MeetTeam from '../components/MeetTeam';
+
+export default function AboutPage(): React.JSX.Element {
+  return (
+    <div className="pt-20 bg-white">
+      <About />
+      <MeetTeam />
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/ContactPage.tsx">
+import React from 'react';
+import Contact from '../components/Contact';
+
+export default function ContactPage(): React.JSX.Element {
+  return (
+    <div className="pt-20 bg-brand-navy">
+      <Contact />
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Home.tsx">
+import React from 'react';
+import Hero from '../components/Hero';
+import CompanyValues from '../components/CompanyValues';
+
+export default function Home(): React.JSX.Element {
+  return (
+    <>
+      <Hero />
+      <CompanyValues />
+    </>
+  );
+}
+</file>
+
+<file path="src/pages/ServicesPage.tsx">
+import React from 'react';
+import Services from '../components/Services';
+import HowItWorks from '../components/HowItWorks';
+import Projects from '../components/Projects';
+import SuccessStories from '../components/SuccessStories';
+
+export default function ServicesPage(): React.JSX.Element {
+  return (
+    <div className="pt-20 bg-slate-50">
+      <Services />
+      <HowItWorks />
+      <Projects />
+      <SuccessStories />
+    </div>
+  );
+}
+</file>
 
 <file path=".env.example">
 # GEMINI_API_KEY: Required for Gemini AI API calls.
@@ -141,23 +223,24 @@ coverage/
     "@google/genai": "^2.4.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
     "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
-    "vite": "^6.2.3",
-    "express": "^4.21.2",
-    "dotenv": "^17.2.3",
-    "motion": "^12.23.24"
+    "react-router-dom": "^7.18.0",
+    "vite": "^6.2.3"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3",
-    "@types/express": "^4.17.21"
+    "vite": "^6.2.3"
   }
 }
 </file>
@@ -186,96 +269,48 @@ View your app in AI Studio: https://ai.studio/apps/0ae7c9ab-b481-48df-a706-a9ed7
 </file>
 
 <file path="src/App.tsx">
-import React, { useEffect, useState } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import HowItWorks from './components/HowItWorks';
-import Projects from './components/Projects';
-import SuccessStories from './components/SuccessStories';
-import MeetTeam from './components/MeetTeam';
-import CompanyValues from './components/CompanyValues';
-import Contact from './components/Contact';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Specify the exact file path with extension if necessary, or check the case-sensitivity
+import Navbar from './components/Navbar'; 
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-export default function App() {
-  const [activeSection, setActiveSection] = useState('home');
+// Our page components
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import ContactPage from './pages/ContactPage';
 
-  useEffect(() => {
-    const handleScrollSpy = () => {
-      const sections = [
-        'home',
-        'about',
-        'services',
-        'how-it-works',
-        'projects',
-        'success-stories',
-        'team',
-        'contact',
-      ];
-
-      const scrollPosition = window.scrollY + 160;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScrollSpy);
-    // Initial call
-    handleScrollSpy();
-
-    return () => {
-      window.removeEventListener('scroll', handleScrollSpy);
-    };
-  }, []);
-
+function App() {
   return (
-    <div className="min-h-screen bg-slate-50 text-gray-900 font-sans selection:bg-brand-steel-light selection:text-white antialiased">
-      {/* Dynamic Header / Top Bar */}
-      <Navbar activeSection={activeSection} />
+    <Router>
+      {/* ScrollToTop instantly snaps the screen back up on page changes */}
+      <ScrollToTop />
+      
+      <div className="flex flex-col min-h-screen bg-slate-50 text-slate-900">
+        {/* Navbar stays anchored at the top of every page */}
+        <Navbar />
 
-      {/* Hero section with heavy sky-scraper cover */}
-      <Hero />
+        {/* Dynamic page content injects here depending on the URL path */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </main>
 
-      {/* Industrial partner overview */}
-      <About />
-
-      {/* Grid of 8 services with bottom VISION and icons */}
-      <Services />
-
-      {/* Staggered process map (Process 01, Process 02, Process 03) */}
-      <HowItWorks />
-
-      {/* Toggled / tabbed historical and futuristic commercial lists */}
-      <Projects />
-
-      {/* 3 detailed case studies with high-contrast picture grids */}
-      <SuccessStories />
-
-      {/* Executive management profiles with specific verified assets */}
-      <MeetTeam />
-
-      {/* 6 Grid items and quote "CHANCES LOVE READY" */}
-      <CompanyValues />
-
-      {/* Global contacts and validated message dispatch form */}
-      <Contact />
-
-      {/* Footer credits and sitemaps */}
-      <Footer />
-    </div>
+        {/* Footer stays anchored at the bottom of every page */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
+
+export default App;
 </file>
 
 <file path="src/components/About.tsx">
